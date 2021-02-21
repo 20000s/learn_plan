@@ -59,3 +59,15 @@ frida做了看雪的三道题，我感觉我这个人都升华了。。感觉悟
 2.学习android native jni编写
 
 3.frida的继续练习（ctf题）
+
+# 2.20
+
+安卓开发上学了jetpack, viewmodel用于保存看的见的数据，，，周期持久,lifecycles感知activity生命周期,livedata nb 可以 发生变化自动进行流程
+
+room 艹 比 sqlite方便多了。。。
+
+看了ollvm的bcf hook掉函数中的函数，加快效率，angr符号执行，把没执行的块nop掉，，angr 以块为执行单位，可以理解为 起始地址到 call jmp jnz之类的
+
+妈的 看作者angr脚本 看了n久，边对照angr的官方文档边看，看的nm自我感觉angr都悟了
+
+ollvm项目会放到github上 还差个平坦化。。要怎么搞。。。
