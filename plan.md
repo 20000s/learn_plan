@@ -220,4 +220,74 @@ pe结构又回顾了一遍
 
 # 3.12
 
-早上看了看看雪和52的帖子，没发现什么好帖。。。看一下电子书《android应用安全》，回顾一下安卓知识，
+早上看了看看雪和52的帖子，没发现什么好帖。。。看一下电子书《android应用安全》，回顾一下安卓知识，顺便复习了一波花指令, 不可调试，可调试
+
+# 3.13
+
+今天 研究了一下异常 seh veh c++的_try _exception，基本理解了异常的过程 kiDispatchexception分发用户级别的异常的花->KiUserExceptionDispatcher->
+
+RtlDispatchException 找到用户的处理函数,先veh后seh  后zwcontinue 进0环再3环
+
+# 3.14
+
+看了一下windows反调试(10种)和密码学
+
+# 3.15
+
+复习了一下android文件结构，感觉要写一下解析器，，，dex有点nb,,,,,，原本想看一下明日方舟。。好像ll2cpp加密了，，，，
+
+# 3.16
+
+java的代码 资源混淆没什么好看的，知道了一个backup，又看了一般try{}_except{} ，我来说一下过程，怕又忘了 编译器在处理try{}_except{}时，使用了cppeh结构，包括 oldesp,exc_ptr,eh3_registation_record,其中eh3是seh结构的扩展，包涵了next,try_level,handler3异常处理函数，以及最重要的scopable数组，包括
+
+previoistry_level,filter,handler函数,程序在执行try{}except{}，是按照以下流程，先得到当前的try_levle，就先将这个try_level放入结构体中，如果碰到异常，就先根据当前的try_level到scopable中找filter,如果不存在，判断位try{}finallt{},如果存在，执行filter,根据返回值分流，0，向上递归，直到prevouis_try_levle为-1,
+
+1的话，就执行handler函数，然后再返回原来地址，当然过程中有什么栈展开就没说了，就太复杂了。。。。。
+
+# 3.17
+
+原来frida可以hook寄存器。。。第一次见。。。address是汇编地址
+
+Interprector.attach(address, {
+
+onEnter: function(args){
+
+​    this.context.x11(寄存器)
+
+}
+
+});
+
+# 3.23
+
+第一代壳写（抄）好了，但是不明白原理，正在补习原理（动态加载），明白了双亲委派，原来就是不断的递归超类找mclassloader，看有没有加载dex文件，其中pathclassloader是apk自带的，dexclassloader是自己导入的（动态加载的核心）,但是从原理上来说，dexclassloader,pathclassloader的源码并无差别，都是调用basedexclassloader，唯独dexclassloader多一个参数，就是自己存放的dex文件的路径，其中findclass主要是dexpathlist的findclass,一个个遍历dexelement,以及在理解的情况下写一下动态加载替换https://blog.csdn.net/suyimin2010/article/details/80958712
+
+loadedapk是负责加载一个apk的,activitythread中有自己的static对象,还有arraymap<name,loadedapk>,
+
+1.使用反射修改类加载器 
+
+ （一）替换LoadedApk中的mClassLoader
+
+原理就是得到activitythread的aarraymap来改它的loadedapk的classloader
+
+呵呵，死活实现不了，明白原理，要怎么操作啊。。。。（死活没成功，要么android系统的锅，要么我函数放的位置不对，之后碰到再看看，就算是明白原理，先咕了）
+
+（二）合并element(我看的热修复就是这个。。)
+
+  艹，也不行，，，原理明白了。。得找几篇文章，详细操作的看看
+
+2.静态代理
+
+
+
+# 3.24
+
+今天学习写第二代壳，内存加载dex,jni实现 
+
+# 3.26-3.30
+
+纵横杯
+
+# 3,31
+
+星阑面试 过了。。。
